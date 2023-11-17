@@ -99,9 +99,6 @@ function createChapter() {
     grid.innerHTML = `<h3>FörsäljningsIntäkter</h3>`;
 
     for (let index = 0; index < resultaträkning.length; index++) {
-        let label = document.createElement("label");
-        label.innerText = resultaträkning[index].label;
-        grid.append(label);
 
         resultaträkning[index].input.type = "text";
         
@@ -110,18 +107,29 @@ function createChapter() {
             case "Bruttoresultat":
             case "Rörelseresultat":
                 {
+                    let label = document.createElement("label");
+                    label.innerHTML = `<b>${resultaträkning[index].label}</b>`;
+                    grid.append(label);
+
                     resultaträkning[index].input.disabled = true;
                     grid.append(resultaträkning[index].input);
+
                     let p = document.createElement("p");
                     p.classList.add("currency");
                     p.innerText = "000 kr";
+
                     grid.append(p);
                     break;
                 }
                 case "ÅretsResultat":
                 {
+                    let label = document.createElement("label");
+                    label.innerHTML = `<b>${resultaträkning[index].label}</b>`;
+                    grid.append(label);
+
                     resultaträkning[index].input.disabled = true;
                     grid.append(resultaträkning[index].input);
+
                     let p = document.createElement("p");
                     p.classList.add("currency");
                     p.innerText = "000 kr";
@@ -129,16 +137,24 @@ function createChapter() {
 
                     let eknomiskaHändelser = document.createElement("h3");
                     eknomiskaHändelser.innerText = "Ekonomiska Händelser";
+
                     grid.append(eknomiskaHändelser);
                     break;
                 }
             default:
                 {
+                    let label = document.createElement("label");
+                    label.innerText = resultaträkning[index].label;
+                    grid.append(label);
+
                     resultaträkning[index].input.placeholder = "Lorem";
+                    resultaträkning[index].autocomplete = "off";
                     grid.append(resultaträkning[index].input);
+
                     let p = document.createElement("p");
                     p.classList.add("currency");
                     p.innerText = "000 kr";
+
                     grid.append(p);
                     break;
                 }
@@ -148,8 +164,9 @@ function createChapter() {
     let button = document.createElement("button");
     button.addEventListener("click", function () {
         
-        let resultaträkning = {
+        let balansräkning = {
             // Lägg in matte här
+            
         };
 
         chapter.innerHTML = `
