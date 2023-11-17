@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    font-size: 4rem;
+    text-align: center;
+    background: linear-gradient(0deg, rgba(200,0,80,1) 0%, rgba(0,0,0,1) 90%);
+    padding: 1rem;
+    color: black;
+    /* color: white; */
+    text-shadow: -3px -1px 1px aqua, 3px 1px 1px red;
+}
+
+body {
+    background: rgb(200,0,80);
+    font-size: 24px;
+}
+
+div.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-shadow: 1px 1px #555;
+}
+
+div.chapter {
+    margin: 1rem;
+    padding: 1rem;
+    background: rgba(0,0,0,0.1);
+    border: #000 2px solid;
+    border-radius: 1rem;
+}
+
+div.input-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr 5em;
+    max-width: 1000px;
+    width: 100vw;
+}
+
+div.input-grid h3 {
+    grid-column: 1 / 4;
+}
+
+input {
+    background-color: #000;
+    color: #ddd;
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: right;
+    font-size: 18px;
+}
+
+input:disabled {
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+}
+
+p.currency {
+    padding: 5px;
+    color: #ddd;
+    font-size: 18px;
+    background: rgba(0,0,0,0.5);
+    width: fit-content;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+div.input-grid button {
+    grid-column: 1 / 4;
+    background-color: #000;
+    font-size: 32px;
+    color: white;
+    width: fit-content;
+    justify-self: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-shadow: -1px -1px 1px aqua, 1px 1px 1px red;
+}
+
+.error {
+    color: red;
+    border: 1px solid red;
+}
