@@ -58,6 +58,10 @@ input {
     font-size: 18px;
 }
 
+input:hover:not(:disabled) {
+    box-shadow: 0px 0px 10px white;
+}
+
 input:disabled {
     background-color: rgba(0,0,0,0.5);
     border: none;
@@ -84,6 +88,11 @@ div.input-grid button {
     border: 1px solid #ddd;
     border-radius: 10px;
     text-shadow: -1px -1px 1px aqua, 1px 1px 1px red;
+}
+
+div.input-grid button:hover {
+    text-shadow: -1px -1px 10px aqua, 1px 1px 10px red;
+    box-shadow: 0px 0px 20px white;
 }
 
 .error {
