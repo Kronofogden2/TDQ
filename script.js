@@ -163,27 +163,32 @@ function createChapter() {
     }
     
     let button = document.createElement("button");
+    button.innerText = "KLAR";
     button.addEventListener("click", function () {
         
         let balansräkning = {
             // Lägg in matte här
             //                        Anläggningstillgångar + Investeringar - Avskrivningar
-            anläggningstillgångar   : chapterData[år-1].anläggningstillgångar+resultaträkning[12].input.value-resultaträkning[5].input.value,
+            anläggningstillgångar   : chapterData[år-1].anläggningstillgångar+parseInt(resultaträkning[12].input.value)-parseInt(resultaträkning[5].input.value),
             //                        Kunfodringar
-            kundfodringar           : resultaträkning[1].input.value,
+            kundfodringar           : parseInt(resultaträkning[1].input.value),
             //                        Kassa och bank år 0 + totala körsäljningsintäkter + Ränte och finanisella intäkter - Ränte och finanisella Kostnader - övriga kostander - Skattekostnader
-            omsättningstillgångar   : chapterData[år-1].omsättningstillgångar + resultaträkning[11].input.value, 
+            omsättningstillgångar   : chapterData[år-1].omsättningstillgångar + parseInt(resultaträkning[11].input.value), 
             //
-            summa_tillgångar        : anläggningstillgångar + kundfodringar + omsättningstillgångar,
+            summa_tillgångar        : 0,
             //                        Eget kapital år 0 + Årets resultat Resultat räkning  - uttdelning + nymission
-            eget_kapital            : chapterData[år-1].egetkapital + 0 - resultaträkning[13].input.value + resultaträkning[14].input.value,
+            eget_kapital            : chapterData[år-1].egetkapital + 0 - parseInt(resultaträkning[13].input.value) + parseInt(resultaträkning[14].input.value),
             //                        Långsiktiga banklån + Nya Banklån - amorteringar
-            långfristiga_skulder    : chapterData[år-1].långfristigaskulder + resultaträkning[15].input.value - resultaträkning[16].input.value,
+            långfristiga_skulder    : chapterData[år-1].långfristigaskulder + parseInt(resultaträkning[15].input.value) - parseInt(resultaträkning[16].input.value),
             //                        Kortfristiga Skulder
             kortfristiga_skulder    : chapterData[år-1].kortfristigaskulder,
             //
-            summa_kapital_skulder   : eget_kapital + långfristiga_skulder + kortfristiga_skulder
+            summa_kapital_skulder   : 0
         };
+        balansräkning.summa_tillgångar = balansräkning.anläggningstillgångar + balansräkning.kundfodringar + balansräkning.omsättningstillgångar;
+        balansräkningsumma_kapital_skulder = balansräkning.eget_kapital + balansräkning.långfristiga_skulder + balansräkning.kortfristiga_skulder;
+
+        chapterData.push(balansräkning);
 
         chapter.innerHTML = `
         <h2>Balansräkning År ${år}</h2>
@@ -191,33 +196,33 @@ function createChapter() {
         <h3>Tillgångar</h3>
         
         <label>Anläggningstillgångar</label>
-        <input type="text" value="${0}" disabled>
+        <input type="text" value="${balansräkning.anläggningstillgångar}" disabled>
         <p class="currency">000 kr</p>
         
         <label>Omsättningstillgångar(Kassa Bank)</label>
-        <input type="text" value="${0}" disabled>
+        <input type="text" value="${balansräkning.omsättningstillgångar}" disabled>
         <p class="currency">000 kr</p>
         
         <label><b>Summa Tillgångar</b></label>
-        <input type="text" value="${0}" disabled>
+        <input type="text" value="${balansräkning.summa_tillgångar}" disabled>
         <p class="currency">000 kr</p>
         
         <h3>Eget Kapital och Skulder</h3>
         
         <label>Eget Kapital</label>
-        <input type="text" value="${0}" disabled>
+        <input type="text" value="${balansräkning.eget_kapital}" disabled>
         <p class="currency">000 kr</p>
         
         <label>Långfristiga skulder (Bank)</label>
-        <input type="text" value="${0}" disabled>
+        <input type="text" value="${balansräkning.långfristiga_skulder}" disabled>
         <p class="currency">000 kr</p>
         
         <label>Kortfristiga skulder (Leverantörer)</label>
-        <input type="text" value="${0}" disabled>
+        <input type="text" value="${balansräkning.kortfristiga_skulder}" disabled>
         <p class="currency">000 kr</p>
         
         <label><b>Summa Eget Kapital och Skulder</b></label>
-        <input type="text" value="${0}" disabled>
+        <input type="text" value="${balansräkning.summa_kapital_skulder}" disabled>
         <p class="currency">000 kr</p>
         </div>
         `;
@@ -225,6 +230,8 @@ function createChapter() {
         år ++;
         createChapter();
     });
+
+    grid.append(button);
 
     chapter.append(grid);
     content.append(chapter);
