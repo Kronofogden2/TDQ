@@ -81,16 +81,16 @@ function createChapter() {
     let resultaträkning = [
     /*0 */{ id: "Försäljningsbetalningar", input: document.createElement("input"), label: "Försäljningsbetalningar" },
     /*1 */{ id: "Kundfordringar", input: document.createElement("input"), label: "Kundfordringar" },
-    /*2 */{ id: "TotalaFörsäljningsintäkter", input: document.createElement("input"), label: "Totala Försäljningsintäkter" },
-    /*3 */{ id: "KostnadSåldaVaror", input: document.createElement("input"), label: "Kostnad sålda varor" },
-    /*4 */{ id: "Bruttoresultat", input: document.createElement("input"), label: "Bruttoresultat" },
+    /*2 */{ id: "TotalaFörsäljningsintäkter", input: document.createElement("input"), label: "Totala Försäljningsintäkter" },   //brög
+    /*3 */{ id: "KostnadSåldaVaror", input: document.createElement("input"), label: "Kostnad sålda varor" },                    
+    /*4 */{ id: "Bruttoresultat", input: document.createElement("input"), label: "Bruttoresultat" },                            //brög
     /*5 */{ id: "Avskrivningar", input: document.createElement("input"), label: "Avskrivningar" },
     /*6 */{ id: "ÖvrigaKostnader", input: document.createElement("input"), label: "Övriga Kostnader" },
-    /*7 */{ id: "Rörelseresultat", input: document.createElement("input"), label: "Rörelseresultat" },
+    /*7 */{ id: "Rörelseresultat", input: document.createElement("input"), label: "Rörelseresultat" },                          //brög
     /*8 */{ id: "Ränteintäkter", input: document.createElement("input"), label: "Ränteintäkter" },
     /*9 */{ id: "Räntekostnader", input: document.createElement("input"), label: "Räntekostnader" },
-    /*0 */{ id: "Skattekostnader", input: document.createElement("input"), label: "Skattekostnader" },
-    /*11*/{ id: "ÅretsResultat", input: document.createElement("input"), label: "Årets Resultat" },
+    /*10*/{ id: "Skattekostnader", input: document.createElement("input"), label: "Skattekostnader" },
+    /*11*/{ id: "ÅretsResultat", input: document.createElement("input"), label: "Årets Resultat" },                             //brög
     /*12*/{ id: "Investeringar", input: document.createElement("input"), label: "Investeringar" },
     /*13*/{ id: "Utdelningar", input: document.createElement("input"), label: "Utdelningar" },
     /*14*/{ id: "Nyemission", input: document.createElement("input"), label: "Nyemission" },
@@ -172,8 +172,8 @@ function createChapter() {
             anläggningstillgångar   : chapterData[år-1].anläggningstillgångar+parseInt(resultaträkning[12].input.value)-parseInt(resultaträkning[5].input.value),
             //                        Kunfodringar
             kundfodringar           : parseInt(resultaträkning[1].input.value),
-            //                        Kassa och bank år 0 + totala körsäljningsintäkter + Ränte och finanisella intäkter - Ränte och finanisella Kostnader - övriga kostander - Skattekostnader
-            omsättningstillgångar   : chapterData[år-1].omsättningstillgångar + parseInt(resultaträkning[11].input.value), 
+            //                        Kassa och bank år 0 + totala försäljningsintäkter + Ränte och finanisella intäkter - Ränte och finanisella Kostnader - övriga kostander - Skattekostnader
+            omsättningstillgångar   : parseInt(chapterData[år-1].omsättningstillgångar) + parseInt(resultaträkning[0].input.value) + parseInt(resultaträkning[1].input.value) + parseInt(resultaträkning[8].input.value) - parseInt(resultaträkning[9].input.value) - parseInt(resultaträkning[6].input.value) - parseInt(resultaträkning[10].input.value),
             //
             summa_tillgångar        : 0,
             //                        Eget kapital år 0 + Årets resultat Resultat räkning  - uttdelning + nymission
