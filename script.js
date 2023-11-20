@@ -187,7 +187,7 @@ function createChapter() {
         };
         balansräkning.summa_tillgångar = balansräkning.anläggningstillgångar + balansräkning.kundfodringar + balansräkning.omsättningstillgångar;
         balansräkningsumma_kapital_skulder = balansräkning.eget_kapital + balansräkning.långfristiga_skulder + balansräkning.kortfristiga_skulder;
-
+        balansräkning.eget_kapital += balansräkning.summa_tillgångar;
         chapterData.push(balansräkning);
 
         chapter.innerHTML = `
