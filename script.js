@@ -173,7 +173,7 @@ function createChapter() {
             //                        Kunfodringar
             kundfodringar           : parseInt(resultaträkning[1].input.value),
             //                        Kassa och bank år 0 + totala försäljningsintäkter + Ränte och finanisella intäkter - Ränte och finanisella Kostnader - övriga kostander - Skattekostnader
-            omsättningstillgångar   : parseInt(chapterData[år-1].omsättningstillgångar) + parseInt(resultaträkning[0].input.value) + parseInt(resultaträkning[1].input.value) + parseInt(resultaträkning[8].input.value) - parseInt(resultaträkning[9].input.value) - parseInt(resultaträkning[6].input.value) - parseInt(resultaträkning[10].input.value),
+            omsättningstillgångar   : parseInt(chapterData[år-1].omsättningstillgångar) + parseInt(resultaträkning[0].input.value) + parseInt(resultaträkning[8].input.value) - parseInt(resultaträkning[9].input.value) - parseInt(resultaträkning[6].input.value) - parseInt(resultaträkning[10].input.value),
             //
             summa_tillgångar        : 0,
             //                        Eget kapital år 0 + Årets resultat Resultat räkning  - uttdelning + nymission
