@@ -225,7 +225,7 @@ function createChapter() {
         <input type="text" value="${balansräkning.summa_kapital_skulder}" disabled>
         <p class="currency">000 kr</p>
 
-        <h3>Nyckeltal<h3/>
+        <h3>Nyckeltal</h3>
 
         <label>Solidtet</label>
         <input type="text" value="${Math.round(balansräkning.eget_kapital / balansräkning.summa_tillgångar * 100)}" disabled>
