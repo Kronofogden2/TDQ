@@ -4,6 +4,8 @@ let chapterData = [];
 
 let år = 1;
 
+let errorMessage = document.createElement("h3");
+
 let buttonÅr0 = document.querySelector("#år0");
 buttonÅr0.addEventListener("click", function () {
     let anläggningstillgångar = document.querySelector("#AnläggningstillgångarÅr0");
@@ -12,7 +14,6 @@ buttonÅr0.addEventListener("click", function () {
     }
     else {
         anläggningstillgångar.classList.remove("error");
-        anläggningstillgångar.disabled = true;
         anläggningstillgångar.value = parseInt(anläggningstillgångar.value);
     }
     let omsättningstillgångar = document.querySelector("#OmsättningstillgångarÅr0");
@@ -21,7 +22,6 @@ buttonÅr0.addEventListener("click", function () {
     }
     else {
         omsättningstillgångar.classList.remove("error");
-        omsättningstillgångar.disabled = true;
         omsättningstillgångar.value = parseInt(omsättningstillgångar.value);
     }
     document.querySelector("#SummaTillgångarÅr0").value = parseInt(anläggningstillgångar.value) + parseInt(omsättningstillgångar.value);
@@ -32,7 +32,6 @@ buttonÅr0.addEventListener("click", function () {
     }
     else {
         egetkapital.classList.remove("error");
-        egetkapital.disabled = true;
         egetkapital.value = parseInt(egetkapital.value);
     }
     let långfristigaskulder = document.querySelector("#LångfristigaSkulderÅr0");
@@ -41,7 +40,6 @@ buttonÅr0.addEventListener("click", function () {
     }
     else {
         långfristigaskulder.classList.remove("error");
-        långfristigaskulder.disabled = true;
         långfristigaskulder.value = parseInt(långfristigaskulder.value);
     }
     let kortfristigaskulder = document.querySelector("#KortfristigaSkulderÅr0");
@@ -50,11 +48,11 @@ buttonÅr0.addEventListener("click", function () {
     }
     else {
         kortfristigaskulder.classList.remove("error");
-        kortfristigaskulder.disabled = true;
         kortfristigaskulder.value = parseInt(kortfristigaskulder.value);
     }
 
-    if (!isNaN(parseInt(egetkapital.value) + parseInt(långfristigaskulder.value) + parseInt(kortfristigaskulder.value))) {
+    
+    if (!isNaN(parseInt(egetkapital.value) + parseInt(långfristigaskulder.value) + parseInt(kortfristigaskulder.value)) && parseInt(egetkapital.value) + parseInt(långfristigaskulder.value) + parseInt(kortfristigaskulder.value) == parseInt(anläggningstillgångar.value) + parseInt(omsättningstillgångar.value)) {
         document.querySelector("#SummaEgetKapitalOchSkulderÅr0").value = parseInt(egetkapital.value) + parseInt(långfristigaskulder.value) + parseInt(kortfristigaskulder.value);
         buttonÅr0.remove();
         chapterData.push({
@@ -64,7 +62,22 @@ buttonÅr0.addEventListener("click", function () {
             långfristiga_skulder: parseInt(långfristigaskulder.value),
             kortfristiga_skulder: parseInt(kortfristigaskulder.value)
         });
+        anläggningstillgångar.disabled = true;
+        omsättningstillgångar.disabled = true;
+        egetkapital.disabled = true;
+        långfristigaskulder.disabled = true;
+        kortfristigaskulder.disabled = true;
+        errorMessage.remove();
         createChapter();
+    }
+    else
+    {
+        console.warn("Summa Tillgångar och Summa Eget Kapital och Skulder ska vara lika med 0");
+        errorMessage.innerText = "Summa Tillgångar och Summa Eget Kapital och Skulder ska vara lika med 0";
+        errorMessage.id = "errorMessage";
+        errorMessage.classList.add("error");
+        document.querySelector(".chapter").append(errorMessage);
+
     }
 
 });
@@ -73,7 +86,7 @@ buttonÅr0.addEventListener("click", function () {
 function createChapter() {
     let chapter = document.createElement("div");
     chapter.classList.add("chapter");
-    chapter.innerHTML = `<h2>Resultaträkning${år}</h2>`;
+    chapter.innerHTML = `<h2>Resultaträkning År ${år}</h2>`;
 
     let grid = document.createElement("div");
     grid.classList.add("input-grid");
