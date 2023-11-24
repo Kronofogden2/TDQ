@@ -228,16 +228,16 @@ function createChapter() {
         <h3>Nyckeltal<h3/>
 
         <label>Solidtet</label>
-        <input type="text" value="${test} disabled"
-        <p> in % </p>
+        <input type="text" value="${balansräkning.eget_kapital / balansräkning.summa_tillgångar} disabled">
+        <p class="currency"> in % </p>
         
         <label>Räntabilitet på eget kapita</label>
-        <input type="text" value="${test} disabled"
-        <p> in % </p>
+        <input type="text" value="${balansräkning.resultaträkning / balansräkning.eget_kapital} disabled">
+        <p class="currency"> in % </p>
 
         <label>Räntabilitet på sysselsatt kapital</label>
-        <input type="text" value="${test} disabled"
-        <p> in % </p>
+        <input type="text" value="${balansräkning.resultaträkning / (balansräkning.eget_kapital + balansräkning.långfristiga_skulder)} disabled">
+        <p class="currency"> in % </p>
 
         </div>
         `;
